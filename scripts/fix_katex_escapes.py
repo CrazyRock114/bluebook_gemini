@@ -2,7 +2,6 @@
 """Fix KaTeX single-backslash escape errors in all volumes."""
 
 import glob
-import re
 
 KNOWN_COMMANDS = [
     'Delta', 'alpha', 'angle', 'begin', 'beta', 'bmod', 'cdot', 'circ',
@@ -16,13 +15,6 @@ KNOWN_COMMANDS = [
 def fix_file(filepath):
     content = open(filepath, "r", encoding="utf-8").read()
     orig = content
-
-    # 1. Double backslash before known LaTeX commands if currently single backslash
-    for cmd in KNOWN_COMMANDS:
-        # Match a single backslash before cmd (not preceded by another backslash)
-        # Note: cmd must be followed by non-alpha to avoid prefix collision (e.g. \le and \left)
-        # To do this safely at character level:
-        pass
 
     # Safe character-level scanner & replacer
     i = 0

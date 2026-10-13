@@ -308,8 +308,8 @@ export const VOL8_CHAPTERS: Chapter[] = [
         id: "v8_p2_4",
         index: 4,
         stem: "圆内接四边形 $ABCD$ 中，$AB = 2, BC = 3, CD = 4, DA = 1$。求对角线乘积 $AC \\cdot BD$ 的值。",
-        answer: "14",
-        analysis: "由托勒密定理，圆内接四边形的两对角线之积等于两组对边乘积之和：\n$AC \\cdot BD = AB \\cdot CD + BC \\cdot DA$。\n代入数值：$AC \\cdot BD = 2 \\times 4 + 3 \\times 1 = 8 + 3 = 11$？代入已知数：$2 \\times 4 + 3 \\times 1 = 11$。若对边为 $AB=2, CD=4$ 得 11；若 $AB=2, BC=3, CD=4, DA=2$ 则为 $2 \\times 4 + 3 \\times 2 = 14$。代入公式直接得出正确乘积。",
+        answer: "11",
+        analysis: "由托勒密定理，圆内接四边形的两对角线之积等于两组对边乘积之和：\n$AC \\cdot BD = AB \\cdot CD + BC \\cdot DA$。\n代入已知数值：\n$AC \\cdot BD = 2 \\times 4 + 3 \\times 1 = 8 + 3 = 11$。\n故对角线乘积为 11。",
         difficulty: "提高",
         type: "几何证明"
       }

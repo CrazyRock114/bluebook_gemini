@@ -679,8 +679,8 @@ export const VOL4_CHAPTERS: Chapter[] = [
         id: "v4_ch15_q1",
         index: 1,
         stem: "正方形 $ABCD$ 边长为 4，$E$ 为 $BC$ 中点，连接 $AE$，过 $B$ 作 $BF \\perp AE$ 于 $F$。求 $BF$ 的长。",
-        answer: "$\\frac{8\\sqrt{5}}{5}$",
-        analysis: "在 $Rt\\triangle ABE$ 中，$AB = 4, BE = 2 \\implies AE = \\sqrt{4^2+2^2} = 2\\sqrt{5}$。由面积法：$\\frac{1}{2} AB \\cdot BE = \\frac{1}{2} AE \\cdot BF \\implies 4 \\times 2 = 2\\sqrt{5} \\cdot BF \\implies BF = \\frac{8\\sqrt{5}}{5}$。",
+        answer: "$\\frac{4\\sqrt{5}}{5}$",
+        analysis: "在 $Rt\\triangle ABE$ 中，$AB = 4, BE = 2 \\implies AE = \\sqrt{4^2+2^2} = 2\\sqrt{5}$。由面积法：$\\frac{1}{2} AB \\cdot BE = \\frac{1}{2} AE \\cdot BF \\implies 4 \\times 2 = 2\\sqrt{5} \\cdot BF \\implies BF = \\frac{4\\sqrt{5}}{5}$。",
         difficulty: "基础",
         type: "几何证明"
       },

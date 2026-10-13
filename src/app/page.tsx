@@ -90,7 +90,9 @@ export default function HomePage() {
                 <div className="text-xs text-slate-500 dark:text-slate-400">原版高清对照索引</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xs">
-                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">88 个专题</div>
+                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                  {ALL_VOLUMES.reduce((acc, v) => acc + v.chapterCount, 0)} 个核心讲座
+                </div>
                 <div className="text-xs text-slate-500 dark:text-slate-400">全覆盖原书讲座体系</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xs">

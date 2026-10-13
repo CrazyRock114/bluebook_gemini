@@ -384,7 +384,7 @@ export const VOL1_CHAPTERS: Chapter[] = [
         index: 1,
         stem: "分解因式：$3x^2 + 5x - 8$。（原书例15）",
         answer: "$(x - 1)(3x + 8)$",
-        analysis: "将二次项系数 3 拆为 $1 	imes 3$，常数项 $-8$ 拆为 $(-1) 	imes 8$。交叉相乘：$1 	imes 8 + 3 	imes (-1) = 8 - 3 = 5$，吻合一次项。故原式分解为 $(x - 1)(3x + 8)$。",
+        analysis: "将二次项系数 3 拆为 $1 \\times 3$，常数项 $-8$ 拆为 $(-1) \\times 8$。交叉相乘：$1 \\times 8 + 3 \\times (-1) = 8 - 3 = 5$，吻合一次项。故原式分解为 $(x - 1)(3x + 8)$。",
         difficulty: "基础",
         type: "因式分解"
       },
@@ -393,7 +393,7 @@ export const VOL1_CHAPTERS: Chapter[] = [
         index: 2,
         stem: "分解因式：$12x^2 - 19xy + 7y^2$。（原书例16）",
         answer: "$(x - y)(12x - 7y)$",
-        analysis: "将首项 12 拆为 $1 	imes 12$，末项 7 拆为 $(-1) 	imes (-7)$。交叉相乘：$1 	imes (-7) + 12 	imes (-1) = -19$。故原式分解为 $(x - y)(12x - 7y)$。",
+        analysis: "将首项 12 拆为 $1 \\times 12$，末项 7 拆为 $(-1) \\times (-7)$。交叉相乘：$1 \\times (-7) + 12 \\times (-1) = -19$。故原式分解为 $(x - y)(12x - 7y)$。",
         difficulty: "提高",
         type: "因式分解"
       },
@@ -402,7 +402,7 @@ export const VOL1_CHAPTERS: Chapter[] = [
         index: 3,
         stem: "分解因式：$12x^2 - 11xy - 15y^2$。（原书习题5第5题）",
         answer: "$(3x - 5y)(4x + 3y)$",
-        analysis: "将 $x^2$ 系数 12 拆为 $3 	imes 4$，$y^2$ 系数 -15 拆为 $(-5) 	imes 3$。交叉试凑：$3 	imes 3 + 4 	imes (-5) = 9 - 20 = -11$。故原式分解为 $(3x - 5y)(4x + 3y)$。",
+        analysis: "将 $x^2$ 系数 12 拆为 $3 \\times 4$，$y^2$ 系数 -15 拆为 $(-5) \\times 3$。交叉试凑：$3 \\times 3 + 4 \\times (-5) = 9 - 20 = -11$。故原式分解为 $(3x - 5y)(4x + 3y)$。",
         difficulty: "提高",
         type: "因式分解"
       },
@@ -411,7 +411,7 @@ export const VOL1_CHAPTERS: Chapter[] = [
         index: 4,
         stem: "分解因式：$(b+c)x^2 - (b^2+c^2+3bc)x + bc(b+c)$。（原书习题5第11题）",
         answer: "(x - b - c)[(b+c)x - bc]",
-        analysis: "将首项系数 $(b+c)$ 拆为 $1 	imes (b+c)$，常数项 $bc(b+c)$ 拆为 $[-(b+c)] 	imes (-bc)$。交叉相乘求和：$1 	imes (-bc) + (b+c) 	imes [-(b+c)] = -bc - (b+c)^2 = -(b^2+c^2+3bc)$，恰为一次项系数！故原式分解为 $(x - b - c)[(b+c)x - bc]$。",
+        analysis: "将首项系数 $(b+c)$ 拆为 $1 \\times (b+c)$，常数项 $bc(b+c)$ 拆为 $[-(b+c)] \\times (-bc)$。交叉相乘求和：$1 \\times (-bc) + (b+c) \\times [-(b+c)] = -bc - (b+c)^2 = -(b^2+c^2+3bc)$，恰为一次项系数！故原式分解为 $(x - b - c)[(b+c)x - bc]$。",
         difficulty: "竞赛",
         type: "因式分解"
       }

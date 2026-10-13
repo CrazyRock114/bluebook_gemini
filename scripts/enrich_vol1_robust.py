@@ -48,7 +48,7 @@ def enrich_vol1():
         type: "因式分解"
       }
     """
-    text = re.sub(p_ch5_pattern, r'\g<1>' + new_ch5_practices + r'\g<2>', text)
+    text = re.sub(p_ch5_pattern, lambda m: m.group(1) + new_ch5_practices + m.group(2), text)
 
     # Enrich ch6 examples & practices
     p_ch6_pattern = r'(id:\s*[\'\"]ch6[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch7[\'\"])'

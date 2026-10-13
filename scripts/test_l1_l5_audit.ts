@@ -8,6 +8,8 @@ console.log("===================================================================
 console.log("  [L0-L5] 全站数据 Schema、唯一性、KaTeX 公式与静态资产穷举审计");
 console.log("================================================================================");
 
+const ROOT_DIR = path.resolve(__dirname, "..");
+
 let totalChapters = 0;
 let totalSubsections = 0;
 let totalExamples = 0;
@@ -19,6 +21,7 @@ let katexFailures: { loc: string; formula: string; err: string }[] = [];
 const allIds = new Set<string>();
 const duplicateIds: { id: string; loc: string }[] = [];
 const missingFields: { loc: string; field: string }[] = [];
+const missingAssets: { loc: string; asset: string }[] = [];
 
 // 1. 递归提取与测试 KaTeX 公式
 function testLatexInString(text: string, location: string) {
@@ -29,12 +32,14 @@ function testLatexInString(text: string, location: string) {
   let match: RegExpExecArray | null;
   while ((match = displayRegex.exec(text)) !== null) {
     const formula = match[1].trim();
+    if (!formula) continue;
     totalFormulas++;
     try {
       katex.renderToString(formula, { displayMode: true, throwOnError: true });
       katexPassCount++;
-    } catch (e: any) {
-      katexFailures.push({ loc: location, formula, err: e.message });
+    } catch (e: unknown) {
+      const err = e instanceof Error ? e.message : String(e);
+      katexFailures.push({ loc: location, formula, err });
     }
   }
 
@@ -50,8 +55,9 @@ function testLatexInString(text: string, location: string) {
     try {
       katex.renderToString(formula, { displayMode: false, throwOnError: true });
       katexPassCount++;
-    } catch (e: any) {
-      katexFailures.push({ loc: location, formula, err: e.message });
+    } catch (e: unknown) {
+      const err = e instanceof Error ? e.message : String(e);
+      katexFailures.push({ loc: location, formula, err });
     }
   }
 }
@@ -60,9 +66,10 @@ function testLatexInString(text: string, location: string) {
 for (const vol of ALL_VOLUMES) {
   const vLoc = `Volume ${vol.id}`;
   // 检查封面
-  const coverPath = path.join("public", vol.coverImage.replace(/^\//, ""));
+  const coverPath = path.join(ROOT_DIR, "public", vol.coverImage.replace(/^\//, ""));
   if (!fs.existsSync(coverPath)) {
     console.error(`[L5 资产缺失] 封面不存在: ${vol.coverImage}`);
+    missingAssets.push({ loc: vLoc, asset: vol.coverImage });
   }
 
   const chapters = getVolumeChapters(vol.id);
@@ -89,9 +96,10 @@ for (const vol of ALL_VOLUMES) {
     if (!ch.pdfPageRange) missingFields.push({ loc: chLoc, field: "pdfPageRange" });
     if (!ch.companionImage) missingFields.push({ loc: chLoc, field: "companionImage" });
     else {
-      const compPath = path.join("public", ch.companionImage.replace(/^\//, ""));
+      const compPath = path.join(ROOT_DIR, "public", ch.companionImage.replace(/^\//, ""));
       if (!fs.existsSync(compPath)) {
         console.error(`[L5 资产缺失] 伴读切图不存在: ${ch.companionImage} (${chLoc})`);
+        missingAssets.push({ loc: chLoc, asset: ch.companionImage });
       }
     }
 
@@ -104,8 +112,9 @@ for (const vol of ALL_VOLUMES) {
       try {
         katex.renderToString(kf.formula, { displayMode: true, throwOnError: true });
         katexPassCount++;
-      } catch (e: any) {
-        katexFailures.push({ loc: `${chLoc} -> keyFormula(${kf.name})`, formula: kf.formula, err: e.message });
+      } catch (e: unknown) {
+        const err = e instanceof Error ? e.message : String(e);
+        katexFailures.push({ loc: `${chLoc} -> keyFormula(${kf.name})`, formula: kf.formula, err });
       }
     }
 
@@ -157,10 +166,15 @@ console.log(`必填字段缺失数: ${missingFields.length}`);
 if (missingFields.length > 0) {
   console.log("缺失字段清单:", missingFields);
 }
+console.log(`静态资产缺失数: ${missingAssets.length}`);
+if (missingAssets.length > 0) {
+  console.log("缺失资产清单:", missingAssets);
+}
 
 console.log("\n--- [L3 领域数学 KaTeX 语法穷举验证] ---");
 console.log(`全站扫描数学公式总数: ${totalFormulas}`);
-console.log(`KaTeX 成功渲染公式数: ${katexPassCount} (${((katexPassCount / totalFormulas) * 100).toFixed(2)}%)`);
+const katexRate = totalFormulas > 0 ? ((katexPassCount / totalFormulas) * 100).toFixed(2) : "0.00";
+console.log(`KaTeX 成功渲染公式数: ${katexPassCount} (${katexRate}%)`);
 console.log(`KaTeX 语法错误公式数: ${katexFailures.length}`);
 
 if (katexFailures.length > 0) {
@@ -170,4 +184,8 @@ if (katexFailures.length > 0) {
     console.log(`    公式: ${f.formula}`);
     console.log(`    错误: ${f.err}`);
   });
+}
+
+if (duplicateIds.length > 0 || missingFields.length > 0 || missingAssets.length > 0 || katexFailures.length > 0) {
+  process.exitCode = 1;
 }

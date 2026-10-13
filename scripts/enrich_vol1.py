@@ -3,8 +3,7 @@
 Inserts authentic Olympiad examples and multi-step practice questions into key chapters.
 """
 
-import os
-import re
+# (Helper script for volume 1 data generation)
 
 def enrich_vol1():
     path = "src/data/volumes/vol1.ts"
@@ -18,7 +17,7 @@ def enrich_vol1():
         index: 1,
         stem: "分解因式：$3x^2 + 5x - 8$。",
         answer: "$(x - 1)(3x + 8)$",
-        analysis: "将 3 拆为 $1 \\times 3$，将 $-8$ 拆为 $(-1) \\times 8$。交叉相乘：$1 \\times 8 + 3 \\times (-1) = 8 - 3 = 5$。故原式 $= (x - 1)(3x + 8)$。",
+        analysis: "将 3 拆为 $1 \\\\times 3$，将 $-8$ 拆为 $(-1) \\\\times 8$。交叉相乘：$1 \\\\times 8 + 3 \\\\times (-1) = 8 - 3 = 5$。故原式 $= (x - 1)(3x + 8)$。",
         difficulty: "基础",
         type: "因式分解"
       },
@@ -27,7 +26,7 @@ def enrich_vol1():
         index: 2,
         stem: "分解因式：$12x^2 - 19xy + 7y^2$。",
         answer: "$(3x - 7y)(4x - y)$",
-        analysis: "将 12 拆为 $3 \\times 4$，将 7 拆为 $(-7) \\times (-1)$。交叉相乘：$3(-1) + 4(-7) = -3 - 28 = -31 \\neq -19$；换拆法：$3(-7) + 4(-1)$？试 $3x - 7y$ 与 $4x - y$：$3(-1) + 4(-7)$ 不对；试试 $(x-y)(12x-7y)$ 得 $-7-12 = -19$！所以是 $(x-y)(12x-7y)$！\\n验证：$x(12x-7y) - y(12x-7y) = 12x^2 - 7xy - 12xy + 7y^2 = 12x^2 - 19xy + 7y^2$。完全吻合！",
+        analysis: "将 12 拆为 $3 \\\\times 4$，将 7 拆为 $(-7) \\\\times (-1)$。交叉相乘：$3(-1) + 4(-7) = -3 - 28 = -31 \\\\neq -19$；换拆法：$3(-7) + 4(-1)$？试 $3x - 7y$ 与 $4x - y$：$3(-1) + 4(-7)$ 不对；试试 $(x-y)(12x-7y)$ 得 $-7-12 = -19$！所以是 $(x-y)(12x-7y)$！\\\\n验证：$x(12x-7y) - y(12x-7y) = 12x^2 - 7xy - 12xy + 7y^2 = 12x^2 - 19xy + 7y^2$。完全吻合！",
         difficulty: "提高",
         type: "因式分解"
       }
@@ -39,7 +38,7 @@ def enrich_vol1():
         index: 1,
         stem: "分解因式：$3x^2 + 5x - 8$。（原书例15）",
         answer: "$(x - 1)(3x + 8)$",
-        analysis: "将二次项系数 3 拆为 $1 \\times 3$，常数项 $-8$ 拆为 $(-1) \\times 8$。交叉相乘：$1 \\times 8 + 3 \\times (-1) = 8 - 3 = 5$。故原式 $= (x - 1)(3x + 8)$。",
+        analysis: "将二次项系数 3 拆为 $1 \\\\times 3$，常数项 $-8$ 拆为 $(-1) \\\\times 8$。交叉相乘：$1 \\\\times 8 + 3 \\\\times (-1) = 8 - 3 = 5$。故原式 $= (x - 1)(3x + 8)$。",
         difficulty: "基础",
         type: "因式分解"
       },

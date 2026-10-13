@@ -31,3 +31,7 @@ for (const vol of ALL_VOLUMES) {
 
 console.log(`Total checked chapters: ${totalChecked}`);
 console.log(`Invalid or out-of-bounds page ranges: ${invalidRanges}`);
+
+if (invalidRanges > 0) {
+  process.exitCode = 1;
+}

@@ -5,7 +5,6 @@ All strings use safe escaping to ensure zero TypeScript build errors.
 """
 
 import re
-import os
 
 def enrich_vol2():
     path = "src/data/volumes/vol2.ts"
@@ -50,8 +49,8 @@ def enrich_vol2():
         id: "v2_ch14_q2",
         index: 2,
         stem: "解方程组：$\\\\begin{cases} x^2 - 3xy + 2y^2 = 0 \\\\\\\\ x^2 + 2y^2 = 6 \\\\end{cases}$。",
-        answer: "$(2, 1), (-2, -1), (\\\\sqrt{3}, \\\\sqrt{3}), (-\\\\sqrt{3}, -\\\\sqrt{3})$",
-        analysis: "分解第一个方程：$(x - y)(x - 2y) = 0 \\\\implies x = y$ 或 $x = 2y$。\\\\n1. 当 $x = y$ 时，代入第二式：$y^2 + 2y^2 = 3y^2 = 6 \\\\implies y^2 = 2 \\\\implies y = \\\\pm \\\\sqrt{2}$？不对，此处原式为 6：若 $3y^2=6 \\\\implies y=\\\\pm \\\\sqrt{2}, x=\\\\pm \\\\sqrt{2}$；\\\\n若第二式为 $x^2 + 2y^2 = 6$：代入 $x=2y$ 得 $4y^2 + 2y^2 = 6y^2 = 6 \\\\implies y = \\\\pm 1$。此时 $x = \\\\pm 2$。\\\\n故解为 $(2, 1), (-2, -1), (\\\\sqrt{2}, \\\\sqrt{2}), (-\\\\sqrt{2}, -\\\\sqrt{2})$。",
+        answer: "$(2, 1), (-2, -1), (\\\\sqrt{2}, \\\\sqrt{2}), (-\\\\sqrt{2}, -\\\\sqrt{2})$",
+        analysis: "分解第一个方程：$(x - y)(x - 2y) = 0 \\\\implies x = y$ 或 $x = 2y$。\\\\n1. 当 $x = y$ 时，代入第二式：$y^2 + 2y^2 = 3y^2 = 6 \\\\implies y^2 = 2 \\\\implies y = \\\\pm \\\\sqrt{2}$。此时 $x = \\\\pm \\\\sqrt{2}$；\\\\n2. 当 $x = 2y$ 时，代入第二式：$4y^2 + 2y^2 = 6y^2 = 6 \\\\implies y = \\\\pm 1$。此时 $x = \\\\pm 2$。\\\\n故解为 $(2, 1), (-2, -1), (\\\\sqrt{2}, \\\\sqrt{2}), (-\\\\sqrt{2}, -\\\\sqrt{2})$。",
         difficulty: "提高",
         type: "方程求解"
       },
@@ -66,7 +65,7 @@ def enrich_vol2():
       }
     ]
     """
-    text = re.sub(p_ch14, r'\g<1>' + new_ch14 + r'\g<3>', text)
+    text = re.sub(p_ch14, lambda m: m.group(1) + new_ch14 + m.group(3), text)
 
     # ch15: 二（多）元一次方程的整数解
     p_ch15 = r'(id:\s*[\'\"]ch15[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch16[\'\"])'
@@ -106,7 +105,7 @@ def enrich_vol2():
         id: "v2_ch15_q2",
         index: 2,
         stem: "求方程 $xy + 2x - 3y = 11$ 的所有整数解 $(x, y)$。",
-        answer: "$(4, 3), (2, -7), (8, 1), (-2, -3)$",
+        answer: "$(4, 3), (8, -1), (2, -7), (-2, -3)$",
         analysis: "两边减 6：$xy + 2x - 3y - 6 = 11 - 6 = 5 \\\\implies (x - 3)(y + 2) = 5$。\\\\n因为 5 为素数，整数因数对 $(x-3, y+2)$ 可取 $(1, 5), (5, 1), (-1, -5), (-5, -1)$。\\\\n解得：\\\\n$(x, y) = (4, 3), (8, -1), (2, -7), (-2, -3)$。\\\\n共有 4 组整数解。",
         difficulty: "提高",
         type: "方程求解"
@@ -122,7 +121,7 @@ def enrich_vol2():
       }
     ]
     """
-    text = re.sub(p_ch15, r'\g<1>' + new_ch15 + r'\g<3>', text)
+    text = re.sub(p_ch15, lambda m: m.group(1) + new_ch15 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -187,7 +186,7 @@ def enrich_vol3():
       }
     ]
     """
-    text = re.sub(p_ch2, r'\g<1>' + new_ch2 + r'\g<3>', text)
+    text = re.sub(p_ch2, lambda m: m.group(1) + new_ch2 + m.group(3), text)
 
     # ch5: 函数的最值
     p_ch5 = r'(id:\s*[\'\"]ch5[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch6[\'\"])'
@@ -243,7 +242,7 @@ def enrich_vol3():
       }
     ]
     """
-    text = re.sub(p_ch5, r'\g<1>' + new_ch5 + r'\g<3>', text)
+    text = re.sub(p_ch5, lambda m: m.group(1) + new_ch5 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -283,8 +282,8 @@ def enrich_vol4():
         id: "v4_ch15_q1",
         index: 1,
         stem: "正方形 $ABCD$ 边长为 4，$E$ 为 $BC$ 中点，连接 $AE$，过 $B$ 作 $BF \\\\perp AE$ 于 $F$。求 $BF$ 的长。",
-        answer: "$\\\\frac{8\\\\sqrt{5}}{5}$",
-        analysis: "在 $Rt\\\\triangle ABE$ 中，$AB = 4, BE = 2 \\\\implies AE = \\\\sqrt{4^2+2^2} = 2\\\\sqrt{5}$。由面积法：$\\\\frac{1}{2} AB \\\\cdot BE = \\\\frac{1}{2} AE \\\\cdot BF \\\\implies 4 \\\\times 2 = 2\\\\sqrt{5} \\\\cdot BF \\\\implies BF = \\\\frac{8\\\\sqrt{5}}{5}$。",
+        answer: "$\\\\frac{4\\\\sqrt{5}}{5}$",
+        analysis: "在 $Rt\\\\triangle ABE$ 中，$AB = 4, BE = 2 \\\\implies AE = \\\\sqrt{4^2+2^2} = 2\\\\sqrt{5}$。由面积法：$\\\\frac{1}{2} AB \\\\cdot BE = \\\\frac{1}{2} AE \\\\cdot BF \\\\implies 4 \\\\times 2 = 2\\\\sqrt{5} \\\\cdot BF \\\\implies BF = \\\\frac{4\\\\sqrt{5}}{5}$。",
         difficulty: "基础",
         type: "几何证明"
       },
@@ -308,7 +307,7 @@ def enrich_vol4():
       }
     ]
     """
-    text = re.sub(p_ch15, r'\g<1>' + new_ch15 + r'\g<3>', text)
+    text = re.sub(p_ch15, lambda m: m.group(1) + new_ch15 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -359,7 +358,7 @@ def enrich_vol8():
         type: "恒等式证明"
       }
     """
-    text = re.sub(p_v8_ch1, r'\g<1>' + new_v8_ch1_p + r'\g<2>', text)
+    text = re.sub(p_v8_ch1, lambda m: m.group(1) + new_v8_ch1_p + m.group(2), text)
 
     # Expand practices in Part 2 (几何篇)
     p_v8_ch2 = r'(id:\s*[\'\"]ch2[\'\"][\s\S]*?practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch3[\'\"])'
@@ -395,13 +394,13 @@ def enrich_vol8():
         id: "v8_p2_4",
         index: 4,
         stem: "圆内接四边形 $ABCD$ 中，$AB = 2, BC = 3, CD = 4, DA = 1$。求对角线乘积 $AC \\\\cdot BD$ 的值。",
-        answer: "14",
-        analysis: "由托勒密定理，圆内接四边形的两对角线之积等于两组对边乘积之和：\\\\n$AC \\\\cdot BD = AB \\\\cdot CD + BC \\\\cdot DA$。\\\\n代入数值：$AC \\\\cdot BD = 2 \\\\times 4 + 3 \\\\times 1 = 8 + 3 = 11$？代入已知数：$2 \\\\times 4 + 3 \\\\times 1 = 11$。若对边为 $AB=2, CD=4$ 得 11；若 $AB=2, BC=3, CD=4, DA=2$ 则为 $2 \\\\times 4 + 3 \\\\times 2 = 14$。代入公式直接得出正确乘积。",
+        answer: "11",
+        analysis: "由托勒密定理，圆内接四边形的两对角线之积等于两组对边乘积之和：\\\\n$AC \\\\cdot BD = AB \\\\cdot CD + BC \\\\cdot DA$。\\\\n代入数值：$AC \\\\cdot BD = 2 \\\\times 4 + 3 \\\\times 1 = 8 + 3 = 11$。\\\\n故对角线乘积为 11。",
         difficulty: "提高",
         type: "几何证明"
       }
     """
-    text = re.sub(p_v8_ch2, r'\g<1>' + new_v8_ch2_p + r'\g<2>', text)
+    text = re.sub(p_v8_ch2, lambda m: m.group(1) + new_v8_ch2_p + m.group(2), text)
 
     # Expand practices in Part 3 (数论篇)
     p_v8_ch3 = r'(id:\s*[\'\"]ch3[\'\"][\s\S]*?practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch4[\'\"])'
@@ -443,7 +442,7 @@ def enrich_vol8():
         type: "数论证明"
       }
     """
-    text = re.sub(p_v8_ch3, r'\g<1>' + new_v8_ch3_p + r'\g<2>', text)
+    text = re.sub(p_v8_ch3, lambda m: m.group(1) + new_v8_ch3_p + m.group(2), text)
 
     # Expand practices in Part 4 (组合篇)
     p_v8_ch4 = r'(id:\s*[\'\"]ch4[\'\"][\s\S]*?practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*\n\];)'
@@ -485,7 +484,7 @@ def enrich_vol8():
         type: "组合极值与博弈"
       }
     """
-    text = re.sub(p_v8_ch4, r'\g<1>' + new_v8_ch4_p + r'\g<2>', text)
+    text = re.sub(p_v8_ch4, lambda m: m.group(1) + new_v8_ch4_p + m.group(2), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)

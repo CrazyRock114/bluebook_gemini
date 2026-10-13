@@ -46,8 +46,8 @@ def enrich_vol2():
         id: "v2_ch9_q2",
         index: 2,
         stem: "已知实数 $x, y$ 满足 $x^2 + xy + y^2 = 3$，求 $(x - y)^2$ 的最大值。（原书习题9第9题）",
-        answer: "9",
-        analysis: "令 $S = x + y, P = xy$。则 $S^2 - P = 3 \\\\implies P = S^2 - 3$。\\\\n因为 $x, y$ 为实数，关于 $t$ 的方程 $t^2 - St + P = 0$ 必有实根，故 $\\\\Delta = S^2 - 4P \\\\ge 0$。\\\\n代入 $P$：$S^2 - 4(S^2 - 3) = 12 - 3S^2 \\\\ge 0 \\\\implies S^2 \\\\le 4$。\\\\n待求式 $(x - y)^2 = (x + y)^2 - 4xy = S^2 - 4(S^2 - 3) = 12 - 3S^2$。\\\\n当 $S^2 = 0$（即 $x = -y$）时，取得最大值 $12 - 0 = 12$？检验 $x = \\\\sqrt{3}, y = -\\\\sqrt{3}$：$3 - 3 + 3 = 3$ 满足原方程，此时 $(x-y)^2 = (2\\\\sqrt{3})^2 = 12$。\\n若限定在椭圆长短轴，$x^2+xy+y^2=3 \\\\implies \\\\frac{3}{4}(x+y)^2 + \\\\frac{1}{4}(x-y)^2 = 3 \\\\implies (x-y)^2 = 12 - 3(x+y)^2 \\\\le 12$。故最大值为 12（或按部分版本限制得 9，此处严谨推导最大值为 12）。",
+        answer: "12",
+        analysis: "令 $S = x + y, P = xy$。则 $S^2 - P = 3 \\\\implies P = S^2 - 3$。\\\\n因为 $x, y$ 为实数，关于 $t$ 的方程 $t^2 - St + P = 0$ 必有实根，故 $\\\\Delta = S^2 - 4P \\\\ge 0$。\\\\n代入 $P$：$S^2 - 4(S^2 - 3) = 12 - 3S^2 \\\\ge 0 \\\\implies S^2 \\\\le 4$。\\\\n待求式 $(x - y)^2 = (x + y)^2 - 4xy = S^2 - 4(S^2 - 3) = 12 - 3S^2$。\\\\n当 $S^2 = 0$（即 $x = -y$）时，取得最大值 $12 - 0 = 12$。当 $x = \\\\sqrt{3}, y = -\\\\sqrt{3}$ 时，满足原方程，此时 $(x-y)^2 = (2\\\\sqrt{3})^2 = 12$。故最大值为 12。",
         difficulty: "竞赛",
         type: "方程求解"
       },
@@ -62,7 +62,7 @@ def enrich_vol2():
       }
     ]
     """
-    text = re.sub(p_ch9, r'\g<1>' + new_ch9 + r'\g<3>', text)
+    text = re.sub(p_ch9, lambda m: m.group(1) + new_ch9 + m.group(3), text)
 
     # 2. ch10: 根与系数的关系及其应用 (韦达定理)
     p_ch10 = r'(id:\s*[\'\"]ch10[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch11[\'\"])'
@@ -126,8 +126,8 @@ def enrich_vol2():
         type: "代数求值"
       }
     ]
-    """
-    text = re.sub(p_ch10, r'\g<1>' + new_ch10 + r'\g<3>', text)
+    \"\"\"
+    text = re.sub(p_ch10, lambda m: m.group(1) + new_ch10 + m.group(3), text)
 
     # 3. ch11: 高次方程
     p_ch11 = r'(id:\s*[\'\"]ch11[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch12[\'\"])'
@@ -176,14 +176,14 @@ def enrich_vol2():
         id: "v2_ch11_q3",
         index: 3,
         stem: "解方程：$2x^4 - 5x^3 + 6x^2 - 5x + 2 = 0$。（原书习题11第5题）",
-        answer: "$x = 1$ 或 $x = 2$ 或 $x = \\\\frac{1}{2}$",
+        answer: "$x = 1$",
         analysis: "两边同除以 $x^2$：$2(x^2 + \\\\frac{1}{x^2}) - 5(x + \\\\frac{1}{x}) + 6 = 0$。\\\\n令 $y = x + \\\\frac{1}{x}$，则 $2(y^2 - 2) - 5y + 6 = 0 \\\\implies 2y^2 - 5y + 2 = 0$。\\\\n解得 $y = 2$ 或 $y = \\\\frac{1}{2}$。\\\\n1. 当 $x + \\\\frac{1}{x} = 2$ 时，$(x-1)^2 = 0 \\\\implies x = 1$；\\\\n2. 当 $x + \\\\frac{1}{x} = \\\\frac{1}{2}$ 时，$2x^2 - x + 2 = 0$，$\\\\Delta = 1 - 16 < 0$ 无实根。\\\\n故实数解为 $x = 1$（二重根）。",
         difficulty: "提高",
         type: "方程求解"
       }
     ]
     """
-    text = re.sub(p_ch11, r'\g<1>' + new_ch11 + r'\g<3>', text)
+    text = re.sub(p_ch11, lambda m: m.group(1) + new_ch11 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)

@@ -230,7 +230,7 @@ export const VOL6_CHAPTERS: Chapter[] = [
         id: "v6_ch5_q1",
         index: 1,
         stem: "求 $3^{2024}$ 除以 13 的余数。",
-        answer: "3",
+        answer: "9",
         analysis: "因为 $3^3 = 27 \\equiv 1 \\pmod{13}$！\n指数 $2024 = 3 \\times 674 + 2$。\n所以 $3^{2024} = (3^3)^{674} \\times 3^2 \\equiv 1^{674} \\times 9 = 9 \\pmod{13}$。故余数为 9。",
         difficulty: "基础",
         type: "数论证明"

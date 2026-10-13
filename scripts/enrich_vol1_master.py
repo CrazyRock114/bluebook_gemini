@@ -7,7 +7,6 @@ Strictly adheres to:
 """
 
 import re
-import os
 
 def enrich_vol1_remaining():
     path = "src/data/volumes/vol1.ts"
@@ -67,7 +66,7 @@ def enrich_vol1_remaining():
         type: "因式分解"
       }
     """
-    text = re.sub(p_ch8, r'\g<1>' + new_ch8 + r'\g<3>', text)
+    text = re.sub(p_ch8, lambda m: m.group(1) + new_ch8 + m.group(3), text)
 
     # ch9: 待定系数法
     p_ch9 = r'(id:\s*[\'\"]ch9[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch10[\'\"])'
@@ -122,7 +121,7 @@ def enrich_vol1_remaining():
         type: "因式分解"
       }
     """
-    text = re.sub(p_ch9, r'\g<1>' + new_ch9 + r'\g<3>', text)
+    text = re.sub(p_ch9, lambda m: m.group(1) + new_ch9 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)

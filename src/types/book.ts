@@ -66,6 +66,7 @@ export interface VolumeInfo {
   totalPages: number;
   bodyPages: number;
   answerPages: number;
+  answerStartPage: number;
   chapterCount: number;
   status: "ready" | "planned";
   coverImage: string;

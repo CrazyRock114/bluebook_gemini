@@ -62,7 +62,7 @@ def enrich_vol5():
       }
     ]
     """
-    text = re.sub(p_ch5, r'\g<1>' + new_ch5 + r'\g<3>', text)
+    text = re.sub(p_ch5, lambda m: m.group(1) + new_ch5 + m.group(3), text)
 
     # ch7: 圆幂定理
     p_ch7 = r'(id:\s*[\'\"]ch7[\'\"][\s\S]*?examples:\s*\[)[\s\S]*?(practices:\s*\[)[\s\S]*?(\]\s*\n\s*\}\s*,\s*\n\s*\{\s*\n\s*id:\s*[\'\"]ch8[\'\"])'
@@ -118,7 +118,7 @@ def enrich_vol5():
       }
     ]
     """
-    text = re.sub(p_ch7, r'\g<1>' + new_ch7 + r'\g<3>', text)
+    text = re.sub(p_ch7, lambda m: m.group(1) + new_ch7 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -158,7 +158,7 @@ def enrich_vol6():
         id: "v6_ch5_q1",
         index: 1,
         stem: "求 $3^{2024}$ 除以 13 的余数。",
-        answer: "3",
+        answer: "9",
         analysis: "因为 $3^3 = 27 \\\\equiv 1 \\\\pmod{13}$！\\\\n指数 $2024 = 3 \\\\times 674 + 2$。\\\\n所以 $3^{2024} = (3^3)^{674} \\\\times 3^2 \\\\equiv 1^{674} \\\\times 9 = 9 \\\\pmod{13}$。故余数为 9。",
         difficulty: "基础",
         type: "数论证明"
@@ -183,7 +183,7 @@ def enrich_vol6():
       }
     ]
     """
-    text = re.sub(p_ch5, r'\g<1>' + new_ch5 + r'\g<3>', text)
+    text = re.sub(p_ch5, lambda m: m.group(1) + new_ch5 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -248,7 +248,7 @@ def enrich_vol7():
       }
     ]
     """
-    text = re.sub(p_ch2, r'\g<1>' + new_ch2 + r'\g<3>', text)
+    text = re.sub(p_ch2, lambda m: m.group(1) + new_ch2 + m.group(3), text)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)

@@ -62,16 +62,23 @@ export const VolumeStudyWorkspace: React.FC<VolumeStudyWorkspaceProps> = ({ volu
   const storageKey = `bluebook_completed_v${volumeId}`;
   useEffect(() => {
     try {
-      const saved =
-        localStorage.getItem(storageKey) ||
-        localStorage.getItem(`v${volumeId}_completed_questions`);
-      if (saved) {
-        setCompletedQuestions(JSON.parse(saved));
+      const primarySaved = localStorage.getItem(storageKey);
+      if (primarySaved) {
+        setCompletedQuestions(JSON.parse(primarySaved));
       } else {
-        setCompletedQuestions({});
+        const legacyKey = `v${volumeId}_completed_questions`;
+        const legacySaved = localStorage.getItem(legacyKey);
+        if (legacySaved) {
+          setCompletedQuestions(JSON.parse(legacySaved));
+          // Migrate to new storage key and remove stale legacy entry
+          localStorage.setItem(storageKey, legacySaved);
+          localStorage.removeItem(legacyKey);
+        } else {
+          setCompletedQuestions({});
+        }
       }
-    } catch (e) {
-      // ignore
+    } catch {
+      // ignore JSON parse or localStorage errors
     }
   }, [volumeId, storageKey]);
 

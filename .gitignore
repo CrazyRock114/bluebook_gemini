@@ -40,6 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# python
+__pycache__/
+*.pyc
+
 # Raw large PDF books
 【第三版】数学奥林匹克小丛书初中卷1-8册全套小蓝本/
 

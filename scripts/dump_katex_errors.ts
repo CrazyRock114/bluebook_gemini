@@ -2,28 +2,66 @@ import { ALL_VOLUMES } from "../src/data/allBooks";
 import { getVolumeChapters } from "../src/data/volumes";
 import katex from "katex";
 import fs from "fs";
+import path from "path";
 
-const failures: any[] = [];
+export interface KatexFailureRecord {
+  volumeId: number;
+  chapterNumber: number;
+  chapterTitle: string;
+  field: string;
+  formula: string;
+  error: string;
+}
+
+const failures: KatexFailureRecord[] = [];
 
 for (const vol of ALL_VOLUMES) {
   const chapters = getVolumeChapters(vol.id);
   for (const ch of chapters) {
     const check = (str: string, field: string) => {
       if (!str) return;
-      const re = /(?<!\\)\$([^\$\n]+?)(?<!\\)\$/g;
-      let m;
-      while ((m = re.exec(str)) !== null) {
-        const raw = m[1].trim();
+
+      // 1) display math $$...$$ (may span multiple lines)
+      const displayRe = /\$\$([\s\S]+?)\$\$/g;
+      let dm: RegExpExecArray | null;
+      while ((dm = displayRe.exec(str)) !== null) {
+        const raw = dm[1].trim();
+        if (!raw) continue;
         try {
-          katex.renderToString(raw, { throwOnError: true });
-        } catch (e: any) {
+          katex.renderToString(raw, { throwOnError: true, displayMode: true });
+        } catch (e: unknown) {
+          const errMsg = e instanceof Error ? e.message : String(e);
           failures.push({
             volumeId: vol.id,
             chapterNumber: ch.number,
             chapterTitle: ch.title,
             field,
             formula: raw,
-            error: e.message
+            error: errMsg,
+          });
+        }
+      }
+
+      // Strip display blocks to prevent inline regex boundary collisions
+      const strWithoutDisplay = str.replace(displayRe, "");
+
+      // 2) inline math $...$
+      const re = /(?<!\\)\$([^\$\n]+?)(?<!\\)\$/g;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(strWithoutDisplay)) !== null) {
+        const raw = m[1].trim();
+        if (!raw) continue;
+        try {
+          katex.renderToString(raw, { throwOnError: true, displayMode: false });
+        } catch (e: unknown) {
+          const errMsg = e instanceof Error ? e.message : String(e);
+          failures.push({
+            volumeId: vol.id,
+            chapterNumber: ch.number,
+            chapterTitle: ch.title,
+            field,
+            formula: raw,
+            error: errMsg,
           });
         }
       }
@@ -33,15 +71,16 @@ for (const vol of ALL_VOLUMES) {
     check(ch.teacherTips, "teacherTips");
     for (const kf of ch.keyFormulas || []) {
       try {
-        katex.renderToString(kf.formula, { throwOnError: true });
-      } catch (e: any) {
+        katex.renderToString(kf.formula, { throwOnError: true, displayMode: true });
+      } catch (e: unknown) {
+        const errMsg = e instanceof Error ? e.message : String(e);
         failures.push({
           volumeId: vol.id,
           chapterNumber: ch.number,
           chapterTitle: ch.title,
           field: `keyFormula(${kf.name})`,
           formula: kf.formula,
-          error: e.message
+          error: errMsg,
         });
       }
     }
@@ -63,5 +102,11 @@ for (const vol of ALL_VOLUMES) {
   }
 }
 
-fs.writeFileSync("scripts/katex_errors.json", JSON.stringify(failures, null, 2));
-console.log(`Successfully dumped ${failures.length} KaTeX errors to scripts/katex_errors.json`);
+const outputPath = path.resolve(__dirname, "katex_errors.json");
+try {
+  fs.writeFileSync(outputPath, JSON.stringify(failures, null, 2), "utf-8");
+  console.log(`Successfully dumped ${failures.length} KaTeX errors to ${outputPath}`);
+} catch (e: unknown) {
+  const errMsg = e instanceof Error ? e.message : String(e);
+  console.error(`Failed to write KaTeX errors file to ${outputPath}: ${errMsg}`);
+}
