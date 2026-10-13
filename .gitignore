@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw large PDF books
+【第三版】数学奥林匹克小丛书初中卷1-8册全套小蓝本/
+
