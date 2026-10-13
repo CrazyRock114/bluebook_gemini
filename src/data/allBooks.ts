@@ -102,12 +102,12 @@ export const ALL_VOLUMES: VolumeInfo[] = [
     totalPages: 131,
     bodyPages: 118,
     answerPages: 5,
-    chapterCount: 5,
+    chapterCount: 12,
     status: "ready",
     coverImage: "/book_covers/v6_cover.png",
-    description: "IMO功勋领队亲授初中数论经典范本。从整除基本性质、素数合数、算术基本定理，到高斯同余算术、同余方程、费马小定理初阶、丢番图一次与非线性不定方程、高斯取整函数 [x] 与勒让德阶乘公式。",
+    description: "IMO功勋领队亲授初中数论经典范本。结构严密遵循3大篇章12大核心讲座：整除与带余除法、素数合数、欧几里得辗转相除法、算术基本定理、高斯同余算术、完全与简化剩余系、费马小定理初阶、奇偶性分析、完全平方数同余特征、一次不定方程、常用解法及勾股方程。",
     targetAudience: "初中数论入门、全国联赛冲刺",
-    highlights: ["国家队总教练撰写", "高斯同余钟表算术", "费马小定理与余数速算", "高斯取整函数与勒让德公式"]
+    highlights: ["国家队总教练撰写", "欧几里得辗转相除法与裴蜀定理", "费马小定理与余数速算", "完全平方数同余性质与勾股方程"]
   },
   {
     id: 7,
@@ -120,12 +120,12 @@ export const ALL_VOLUMES: VolumeInfo[] = [
     totalPages: 106,
     bodyPages: 77,
     answerPages: 19,
-    chapterCount: 6,
+    chapterCount: 5,
     status: "ready",
     coverImage: "/book_covers/v7_cover.png",
-    description: "激发创造性思维的最佳读物。涵盖枚举与加乘原理、容斥原理、抽屉原理（鸽巢原理）、棋盘与平面染色技巧、操作与逻辑博弈不变量、对称必胜策略与组合最值，趣味盎然。",
+    description: "激发创造性思维的最佳读物。涵盖计数问题（枚举与加乘原理、容斥原理）、抽屉原理（鸽巢原理）、染色问题（棋盘网格与图形染色）、操作与博弈游戏（不变量与对称必胜策略）、以及压轴大题组合最值（算两次与估计构造）。",
     targetAudience: "培养思维灵活性、全学段竞赛生",
-    highlights: ["容斥原理多退少补", "鸽巢原理数论与几何抽屉", "残缺棋盘黑白染色否定", "博弈不变量与对称必胜策略"]
+    highlights: ["容斥原理多退少补", "鸽巢原理数论与几何抽屉", "残缺棋盘黑白染色否定", "博弈不变量与组合最值算两次"]
   },
   {
     id: 8,

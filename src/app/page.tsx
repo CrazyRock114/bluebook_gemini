@@ -49,14 +49,15 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-              奥数圣经 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent">“小蓝本”</span> 初中卷全套教学系统
+              奥数圣经 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent">“小蓝本”</span> 初中卷教学系统
             </h1>
 
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
               中国数学奥林匹克国家队领队、国际金牌教练单墫、葛军、沈文选、柯新立、冯志刚、周建新泰斗阵容执笔。
-              全套 8 册、1,280 页经典奥数思维现已全部完成数字化，支持{" "}
-              <strong className="text-slate-900 dark:text-white font-medium">LaTeX 矢量公式</strong>、
-              <strong className="text-slate-900 dark:text-white font-medium">分步独立解题模式</strong> 与{" "}
+              系统覆盖全套 8 册、物理原著全部 88 大核心讲座与方法体系，
+              支持 <strong className="text-slate-900 dark:text-white font-medium">LaTeX 矢量公式</strong>、
+              <strong className="text-slate-900 dark:text-white font-medium">代表性母题精讲</strong>、
+              <strong className="text-slate-900 dark:text-white font-medium">交互独立解题</strong> 与
               <strong className="text-slate-900 dark:text-white font-medium">原书高清伴读</strong>。
             </p>
 
@@ -86,15 +87,15 @@ export default function HomePage() {
               </div>
               <div className="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xs">
                 <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">1,280 页</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">原版高清数字化</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">原版高清对照索引</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xs">
-                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">92 个讲座</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">核心奥数知识专题</div>
+                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">88 个专题</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">全覆盖原书讲座体系</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xs">
-                <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">100% 对照</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">例习题与原版答案</div>
+                <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">母题精讲</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">逐题详细推演步骤</div>
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "小蓝本初中奥数教学网 · 数学奥林匹克小丛书（第三版）",
-  description: "华东师范大学出版社《数学奥林匹克小丛书》初中卷1-8册官方数字化教学平台。单墫、葛军、冯志刚领衔主编，提供沉浸式讲义、LaTeX公式渲染、互动刷题与纸电伴读。",
+  description: "华东师范大学出版社《数学奥林匹克小丛书》初中卷1-8册数字化教学平台。单墫、葛军、沈文选、柯新立、冯志刚、周建新领衔编写，覆盖全套88大讲座知识体系，提供精读讲义、LaTeX公式渲染、母题精讲与交互式习题闯关。",
 };
 
 export default function RootLayout({

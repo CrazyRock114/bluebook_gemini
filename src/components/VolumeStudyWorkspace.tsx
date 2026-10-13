@@ -59,10 +59,12 @@ export const VolumeStudyWorkspace: React.FC<VolumeStudyWorkspaceProps> = ({ volu
     chapters.find((c) => c.id === activeChapterId) || chapters[0] || ({} as any);
 
   // Load completed questions from localStorage
-  const storageKey = `v${volumeId}_completed_questions`;
+  const storageKey = `bluebook_completed_v${volumeId}`;
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(storageKey);
+      const saved =
+        localStorage.getItem(storageKey) ||
+        localStorage.getItem(`v${volumeId}_completed_questions`);
       if (saved) {
         setCompletedQuestions(JSON.parse(saved));
       } else {
@@ -608,6 +610,7 @@ export const VolumeStudyWorkspace: React.FC<VolumeStudyWorkspaceProps> = ({ volu
           title={`${currentChapter.number}. ${currentChapter.title}`}
           bookPageRange={currentChapter.bookPageRange}
           pdfPageRange={currentChapter.pdfPageRange}
+          volumeId={volumeId}
         />
       )}
     </div>

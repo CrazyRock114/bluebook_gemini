@@ -5,7 +5,20 @@ export interface PracticeQuestion {
   answer: string; // Final answer or key conclusion
   analysis: string; // Step-by-step detailed solution
   difficulty: "基础" | "提高" | "竞赛";
-  type: "因式分解" | "多项式整除" | "代数求值" | "恒等式证明" | "质数与整数";
+  type:
+    | "因式分解"
+    | "多项式整除"
+    | "代数求值"
+    | "恒等式证明"
+    | "质数与整数"
+    | "方程求解"
+    | "几何证明"
+    | "函数与不等式"
+    | "数论证明"
+    | "组合计数"
+    | "组合极值与博弈"
+    | "解题策略与构造"
+    | string;
   hint?: string; // Progressive hint
 }
 
